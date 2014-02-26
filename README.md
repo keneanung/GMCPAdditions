@@ -1,4 +1,3 @@
-
 Module and message names are not case sensitive. JSON key names are case sensitive.
 
 Supported modules
@@ -56,12 +55,12 @@ Supported messages by modules
       - Example: Core.Goodbye "Goodbye, adventurer"
 
 - Char
-  Sent by client:
+  - Sent by client:
     - Char.Login
       - Used to log in a character, only interpreted if no character is logged in for that connection
       - Message body is an object with keys "name" and "password"
       - Example: Char.Login { "name": "somename", "password": "somepassword" }
-  Sent by server:
+  - Sent by server:
     - Char.Vitals
       - Basic character attributes such as health, mana, etc.
       - Message body is an object containing several variables
@@ -84,8 +83,8 @@ Supported messages by modules
       - each object element is a name-value pair, name is the internal name defined by the StatusVars message and value is the variable value
       - example: Char.Status { "level": "58", "guild": "Guild" }
 
-Char.Skills
-  Sent by client:
+- Char.Skills
+  - Sent by client:
     - Char.Skills.Get
       - Sent by client to request skill information
       - message body is an object with keys "group" and "name"
@@ -93,7 +92,7 @@ Char.Skills
       - if group is provided but name is not, the server will send Char.Skills.List for that group
       - otherwise the server will send Char.Skills.Groups
       - example: Char.Skills.Get { "group": "elemancy", "name": "firelash" }
-  Sent by server:
+  - Sent by server:
     - Char.Skills.Groups
       - groups of skills available to the character
       - sent by server on request or at any time (usually if the list changes)
@@ -113,8 +112,8 @@ Char.Skills
       - group and skill identify the request, info is a description (usually multi-line) of the skill's functionality and usage
       - Example: Char.Skills.Info { "group": "Elemancy", "skill": "Firelash", "blah blah" }
 
--Char.Items
-  -Sent by client:
+- Char.Items
+  - Sent by client:
     - Char.Items.Inv
       - request for the server to send the list of items in player's inventory
       - message body is empty
@@ -123,7 +122,7 @@ Char.Skills
       - request for the server to send the list of items located inside another item
       - message body is a number identifying the item
       - causes the server to send back an appropriate Char.Items.List message
-  -Sent by server:
+  - Sent by server:
     - Char.Items.List
       - list of items at a specified location (room, inv, held container)
       - message body is an object with keys "location" and "items"
