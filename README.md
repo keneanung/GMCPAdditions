@@ -161,6 +161,12 @@ Char.Items
     - "l" = wielded, 
     - "g" = groupable, 
     - "c" = container
+    - "r" = riftable
+    - "f" = fluid
+    - "e" = edible
+    - "m" = mobile
+    - "d" = dead
+    - "t" = takeable
   - example: `Char.Items.List { "location": "room", "items": [ {"id": 54685, "name": "an apple"}, {"id": 85462, "name": "a tiny worm"}] }`
 - Char.Items.Add
   - informs the client about an item being added to the specified location
