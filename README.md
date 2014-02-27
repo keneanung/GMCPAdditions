@@ -207,6 +207,10 @@ Comm.Channel
 - Comm.Channel.End
   - ends a channel text started by Comm.Channel.Start
   - message body is a text containing the channel name
+- Comm.Channel.Text
+  - Complete information about a communication.
+  - The body is an object with the fields "talker", "channel" and "text" - talker is the person, who uses the channel, channel is the channel used, text is the complete text that is sent. This includes possibile ANSI colors and maybe even MXP (the latter is unconfirmed)
+  - example: `Comm.Channel.Text { "channel": "newbie", "talker": "Juliet", "text": "\u001b[0;1;32m(Newbie): Juliet says, \"You would simply slay Beku with Your lightning I imagine, Lady Aurora!\"\u001b[0;37m" }`
 
 
 
