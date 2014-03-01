@@ -303,6 +303,12 @@ IRE.Composer
 IRE.Tasks
 ---------
 
+### Sent by client ###
+
+- IRE.Tasks.Request
+  - Sent by the client to request the current list of tasks.
+  - no body.
+
 ### Sent by server ###
 
 - IRE.Tasks.List
