@@ -335,7 +335,7 @@ IRE.Time
   - Sent by the client to request the current IRE.Time.List
   - no body
 
-### Sent by Server
+### Sent by Server ###
 
 - IRE.Time.List
   - Sent by the server to transmit the current time and addtional information about the time.
@@ -353,3 +353,18 @@ IRE.Time
   - sent by the server on time update
   - body has the same stucture as IRE.Time.List
   - only the changed fields are transmitted
+
+
+IRE.Misc
+--------
+
+### Sent by server ###
+
+- IRE.Misc.RemindVote
+  - Sent by the server to remind the client to vote
+  - The body is a string that contains the url to vote
+  - example: `IRE.Misc.RemindVote "http://www.topmudsites.com/cgi-bin/topmuds/rankem.cgi?id=sarapis"`
+- IRE.Mist.Achievement
+  - Sent by the server when an achievement is met
+  - the body is an object with the name and value of the achievement
+  - example: `IRE.Misc.Achievement { "name": "AchievedLevel21", "value": "1" }`
