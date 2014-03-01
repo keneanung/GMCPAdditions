@@ -290,7 +290,8 @@ IRE.Composer
 ### Sent by server ###
 
 - IRE.Composer.Edit
-  - sent by the server when the player enters an in-game editor. Body is an object, with keys "title" and "text". Text contains the current buffer, title is a title that can be shown to the user.
+  - sent by the server when the player enters an in-game editor
+  - Body is an object, with keys "title" and "text". Text contains the current buffer, title is a title that can be shown to the user.
 
 ### Sent by client ###
 
