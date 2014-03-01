@@ -317,10 +317,39 @@ IRE.Tasks
     - "id": Unique ID of the task
     - "name": Name of the task
     - "desc": Describtion of the task, including details how to solve the task
-    - "type": Type of the task. Known types are `Quest`and `Task`
+    - "type": Type of the task. Known types are `Achievements`, `Quest`and `Task`
     - "cmd": Command to show the task via "normal" means
     - "status": : Status of the task. May be an empty string, "1" for completed tasks and "0" for uncompleted
   - example: `IRE.Tasks.List [ { "id": "1", "name": "Break Free of Your Imprisonment", "desc": "Where are you? What's going on? There's no time to waste, you need to get out of here!\n\nPay close attention to the directions and tips on your screen and you'll be out of the dungeon in no time.", "type": "Task", "cmd": "NEWTASK 1 INFO", "status": "1", "group": "Completed" },  { "id": "122", "name": "Feed the Birds", "desc": "Paloma has asked you to scout around the city for stale bread, so she   \ncan continue feeding the pigeons in Artisan Plaza.                      ", "type": "Quest", "cmd": "QUEST 122 DETAILS", "status": "", "group": "Cyrene" } ]`
+- IRE.Tasks.Update
+  - Sent by the server to show that a task was changed.
+  - The body structure is the same as the one of IRE.Tasks.List
 
 
+IRE.Time
+--------
 
+### Sent by Client ###
+
+- IRE.Time.Request
+  - Sent by the client to request the current IRE.Time.List
+  - no body
+
+### Sent by Server
+
+- IRE.Time.List
+  - Sent by the server to transmit the current time and addtional information about the time.
+  - The body is am object with the following fields:
+    - "time": The time of the day
+    - "moonphase": phase of the moon
+    - "day": current day of the month
+    - "month": name of the current month
+    - "mon": nummerical representation of the current month
+    - "hour": current hour of the day
+    - "year": current year
+    - "daynight": *time of the day in a numerical representation, resets with the morning* (highly speculative)
+  - example: `IRE.Time.List { "day": "5", "mon": "9", "month": "Phaestian", "year": "648", "hour": "51", "time": "Dusk has overtaken the light in Achaea.", "moonphase": "Waxing Gibbous", "daynight": "122" }`
+- IRE.Time.Update
+  - sent by the server on time update
+  - body has the same stucture as IRE.Time.List
+  - only the changed fields are transmitted
