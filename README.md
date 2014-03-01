@@ -368,3 +368,28 @@ IRE.Misc
   - Sent by the server when an achievement is met
   - the body is an object with the name and value of the achievement
   - example: `IRE.Misc.Achievement { "name": "AchievedLevel21", "value": "1" }`
+  - IRE.Misc.OneTimePassword
+
+IRE.Display
+-----------
+
+- IRE.Display.Help
+- IRE.Display.FixedFont
+- IRE.Display.AutoFill
+- IRE.Display.HidePopup
+- IRE.Display.HideAllPopups
+- IRE.Display.Popup
+- IRE.Display.Ohmap
+
+IRE.FileStore
+-------------
+
+- IRE.FileStore.Content
+
+IRE.Sound
+---------
+
+- IRE.Sound.Preload
+- IRE.Sound.Play
+- IRE.Sound.Stop
+- IRE.Sound.StopAll
