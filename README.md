@@ -73,6 +73,11 @@ Char
 
 ### Sent by server ###
 
+
+- Char.Name
+  - Contains the characters's name and the complete name including title.
+  - Message body in an object containing the variables `name` and `fullname`
+  - example: `Char.Name { "name": "Tecton", "fullname": "Tecton, the Terraformer"}`
 - Char.Vitals
   - Basic character attributes such as health, mana, etc.
   - Message body is an object containing several variables
