@@ -300,4 +300,21 @@ IRE.Composer
   - Sending this message only changes the edit buffer, but does not end the editing session
   - on IRE games, the client may send the command -`*save` to save a text, or command `*quit` to abort editing (IRE.Composer.SetBuffer is not sent in this case) - this behaviour is IRE-specific and is one of the reasons why the Composer module is in the IRE namespace
 
+IRE.Tasks
+---------
+
+### Sent by server ###
+
+- IRE.Tasks.List
+  - Sent by the server to transmit a list of tasks the character has
+  - The body is an array of objects with the following fields:
+    - "id": Unique ID of the task
+    - "name": Name of the task
+    - "desc": Describtion of the task, including details how to solve the task
+    - "type": Type of the task. Known types are `Quest`and `Task`
+    - "cmd": Command to show the task via "normal" means
+    - "status": : Status of the task. May be an empty string, "1" for completed tasks and "0" for uncompleted
+  - example: `IRE.Tasks.List [ { "id": "1", "name": "Break Free of Your Imprisonment", "desc": "Where are you? What's going on? There's no time to waste, you need to get out of here!\n\nPay close attention to the directions and tips on your screen and you'll be out of the dungeon in no time.", "type": "Task", "cmd": "NEWTASK 1 INFO", "status": "1", "group": "Completed" },  { "id": "122", "name": "Feed the Birds", "desc": "Paloma has asked you to scout around the city for stale bread, so she   \ncan continue feeding the pigeons in Artisan Plaza.                      ", "type": "Quest", "cmd": "QUEST 122 DETAILS", "status": "", "group": "Cyrene" } ]`
+
+
 
