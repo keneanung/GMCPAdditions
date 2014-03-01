@@ -121,8 +121,8 @@ Char.Skills
   - groups of skills available to the character
   - sent by server on request or at any time (usually if the list changes)
   - for IRE games, groups are skills like Survival or Elemancy
-  - message body is an array of strings, each being one name
-  - example: `Char.Skills.Groups [ "Survival", "Perception", "Elemancy", "Crystalism" ]`
+  - message body is an array of objects, each being one name and the skill rank
+  - example: `Char.Skills.Groups [ { "name":"Survival", "rank": "Transcendent" }, { "name": "Perception", "rank": "Trascendant" }, { "name": "Elemancy", "rank": "Transcendant"}, { "name": "Crystalism", "rank": "Expert"} ]`
 - Char.Skills.List
   - list of skills in a group available to the character
   - sent by server on request only
