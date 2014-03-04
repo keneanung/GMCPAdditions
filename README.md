@@ -224,7 +224,7 @@ Comm.Channel
   - message body is a text containing the channel name
 - Comm.Channel.Text
   - Complete information about a communication.
-  - The body is an object with the fields "talker", "channel" and "text" - talker is the person, who uses the channel, channel is the channel used, text is the complete text that is sent. This includes possibile ANSI colors and maybe even MXP (the latter is unconfirmed)
+  - The body is an object with the fields "talker", "channel" and "text" - talker is the person, who uses the channel, channel is the channel used, text is the complete text that is sent. This includes possibile ANSI colors and MXP commands
   - example: `Comm.Channel.Text { "channel": "newbie", "talker": "Juliet", "text": "\u001b[0;1;32m(Newbie): Juliet says, \"You would simply slay Beku with Your lightning I imagine, Lady Aurora!\"\u001b[0;37m" }`
 
 
@@ -372,7 +372,7 @@ IRE.Misc
   - Sent by the server when an achievement is met
   - the body is an object with the name and value of the achievement
   - example: `IRE.Misc.Achievement { "name": "AchievedLevel21", "value": "1" }`
-  - IRE.Misc.OneTimePassword
+- IRE.Misc.OneTimePassword
 
 IRE.Display
 -----------
