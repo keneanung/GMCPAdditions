@@ -213,13 +213,13 @@ Comm.Channel
   - message body is an array of objects, each object representing one channel
   - each object has keys "name", "caption" and "command" - name is internal name, caption is player-visible name, command is command used to communicate over this channel
   - example: `Comm.Channel.List [{"name":"ct", "caption":"Some city", "command":"ct"}, {"name":"gt", "caption":"Some guild", "command":"gt"}]`
-- Comm.Channel.Start
+- Comm.Channel.Start (*deprecated*)
   - informs the client that text that follows is something said over a communication channel
   - message body is a text containing the channel name
   - for tells from/to another player, the channel name is "tell Name"
   - Example: `Comm.Channel.Start "ct"`
   - Example: `Comm.Channel.Start "tell Player1"`
-- Comm.Channel.End
+- Comm.Channel.End (*deprecated*)
   - ends a channel text started by Comm.Channel.Start
   - message body is a text containing the channel name
 - Comm.Channel.Text
@@ -245,12 +245,24 @@ Room
     - "map" - map information - URL pointing to a map image, followed by X and Y room (not pixel) coordinates on the map
     - "details" - array holding further information about a room - shop,bank,...
     - "exits" - object containing exits, each key is a direction and each value is the number identifying the target room
-  - `Example: Room.Info {"num": 12345, "name": "On a hill", "area": "Barren hills", "environment": "Hills", "coords": "45,5,4,3", "map": "www.imperian.com/itex/maps/clientmap.php?map=45&level=3 5 4", "exits": { "n": 12344, "se": 12336 }, "details": [ "shop", "bank" ] }`
+  - Example: `Room.Info {"num": 12345, "name": "On a hill", "area": "Barren hills", "environment": "Hills", "coords": "45,5,4,3", "map": "www.imperian.com/itex/maps/clientmap.php?map=45&level=3 5 4", "exits": { "n": 12344, "se": 12336 }, "details": [ "shop", "bank" ] }`
 - Room.WrongDir
   - Sent if the player attempts to move in a non-existant direction using the standard movement commands
   - Upon receiving this message, the client can safely assume that the specified direction does not lead anywhere at this time
   - Message body is a string with the name if the non-existant exit
   - Example: `Room.WrongDir "ne"`
+- Room.Players
+  - A list of objects containing player details
+  - Each player object contains the keys `name` and `fullname`, which represent the actual name and the name including all titles, respectively.
+  - Example: `Room.Players [{"name": "Tecton", "fullname":"Tecton, the Terraformer"}, { "name": "Cardan", "fullname":"Cardan, the Curious"}]`
+- Room.AddPlayer
+  - Sent, if a player enters the room
+  - The message body is an object with the same structure of a single player in Room.Players
+  - Example: `Room.AddPlayer { "name": "Cardan", "fullname": "Cardan, the Curious" }`
+- Room.RemovePlayer
+  - Sent, when a player leaves a room
+  - Message body is a string with the name of the leaving player.
+  - Example: `Room.RemovePlayer "Cardan"`
 
 
 
@@ -324,6 +336,7 @@ IRE.Tasks
     - "type": Type of the task. Known types are `Achievements`, `Quest`and `Task`
     - "cmd": Command to show the task via "normal" means
     - "status": : Status of the task. May be an empty string, "1" for completed tasks and "0" for uncompleted
+    - "group": Group the task is organized into. On completion, tasks are moved to the "Completed" group.
   - example: `IRE.Tasks.List [ { "id": "1", "name": "Break Free of Your Imprisonment", "desc": "Where are you? What's going on? There's no time to waste, you need to get out of here!\n\nPay close attention to the directions and tips on your screen and you'll be out of the dungeon in no time.", "type": "Task", "cmd": "NEWTASK 1 INFO", "status": "1", "group": "Completed" },  { "id": "122", "name": "Feed the Birds", "desc": "Paloma has asked you to scout around the city for stale bread, so she   \ncan continue feeding the pigeons in Artisan Plaza.                      ", "type": "Quest", "cmd": "QUEST 122 DETAILS", "status": "", "group": "Cyrene" } ]`
 - IRE.Tasks.Update
   - Sent by the server to show that a task was changed.
