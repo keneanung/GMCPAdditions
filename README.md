@@ -386,12 +386,15 @@ IRE.Misc
   - the body is an object with the name and value of the achievement
   - example: `IRE.Misc.Achievement { "name": "AchievedLevel21", "value": "1" }`
 - IRE.Misc.OneTimePassword
+- IRE.Misc.JavaEnv
 
 IRE.Display
 -----------
 
 - IRE.Display.Help
-- IRE.Display.FixedFont
+- IRE.Display.FixedFont (*speculative*)
+  - Used to order the client to use a fixed font (e.g. Monospace fonts) to display content
+  - Body is a string that may contain `start` to start the fixed part and `stop` to stop the part again.
 - IRE.Display.AutoFill
 - IRE.Display.HidePopup
 - IRE.Display.HideAllPopups
@@ -401,7 +404,11 @@ IRE.Display
 IRE.FileStore
 -------------
 
+### Sent by server
+
 - IRE.FileStore.Content
+  - Used to send server stored content to the client. The content is Bas64 encoded.
+  - For the HTML5 client, this is simple JavaScript, that seems to be run after receiving the message.
 
 IRE.Sound
 ---------
