@@ -392,14 +392,37 @@ IRE.Display
 -----------
 
 - IRE.Display.Help
+  - Gating event for displaying help contents.
+  - Body is a string containing `start`to open the gate and `stop`to close it
 - IRE.Display.FixedFont (*speculative*)
   - Used to order the client to use a fixed font (e.g. Monospace fonts) to display content
   - Body is a string that may contain `start` to start the fixed part and `stop` to stop the part again.
 - IRE.Display.AutoFill
+  - Fill the input of the client with the given text.
+  - Body is an object with the following fields:
+    - "command": The command to be put into the input line.
+    - "highlight": string or bool (?) marking the line to be selected or not
+  - Example: `IRE.Display.AutoFill { "command": "Help help", "highlight": false }`
 - IRE.Display.HidePopup
+  - Message to tell the client to remove a popup from display
+  - Message body is an object with the key "id", showing the popup to be hidden
 - IRE.Display.HideAllPopups
+  - Hides all popups
+  - no body
 - IRE.Display.Popup
+  - Used to show a popup to the client
+  - The body is an object with the following fields:
+    - "id": ID of the popup
+    - "text": The text to display
+    - "options": Options to use with the popup. Known options are display time (`time`, integer) and transparency (`transparent`, boolean)
+    - "element": (HTML-ID of the) parent element of the popup.
+    - "src": An image that should be displayed
+    - "cmd": A command that should be run by the client upon clicking the popup. Known ones are `done`, `continue`, and `back` 
+  - Example: `IRE.Display.Popup {"id":"intro_step_4","text":"This window displays a map of your surroundings.","options":{"time":"20", "transparent":true},"element":"output"}`
 - IRE.Display.Ohmap
+  - Gating event for displaying the wilderness (overhead) map.
+  - Body is a string containing `start` immediately before the output starts or `stop` immidiately after the last line of the map
+  - Example: `IRE.Display.Ohmap "start"`
 
 IRE.FileStore
 -------------
