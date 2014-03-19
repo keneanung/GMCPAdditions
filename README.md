@@ -541,6 +541,18 @@ IRE.FileStore
 - Used to send server stored content to the client. The content is Bas64 encoded.
 - For the HTML5 client, this is simple JavaScript, that seems to be run after receiving the message.
 
+### Sent by client ###
+
+#### IRE.FileStore.Request ####
+
+- Used to access the reflex packages saved on the server. Depending on the request, different actions are taken.
+- Body is an object with the keys "request" and "data". Those are filled in the following manner:
+
+| request              | data                                                               | description                                       |
+|----------------------|--------------------------------------------------------------------|-----------------------------------------------------------|
+| clr                  | null                                                               | Clears the data on the server                             |
+| add                  | Base64 encoded data to put on the server. Max length 8192 char (?) | Adds the data to the data already stored on the server.   |
+| put *html5-reflexes* | null                                                               | Points the server to the storages space (?) where to previously `put` data should be stored. |
 
 
 IRE.Sound
