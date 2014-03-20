@@ -241,6 +241,10 @@ Comm.Channel
 
 - request for the server to send Comm.Channel.Players
 - no message body
+
+#### Comm.Channel.Enable ####
+
+- no info yet (found in http://client.achaea.com/includes/js/ui/channels.js)
   
 ### Sent by server ###
 
@@ -478,6 +482,11 @@ IRE.Misc
 
 - no info yet
 
+### Sent by client ###
+
+#### IRE.Misc.OneTimePassword ####
+
+- no info yet (found in http://client.achaea.com/includes/js/ui/dialogs.js)
 
 
 IRE.Display
