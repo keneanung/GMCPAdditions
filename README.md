@@ -18,6 +18,7 @@ Supported modules
 - [IRE.Display](#iredisplay) - used internally by the HTML5 and Nexus client
 - [IRE.FileStore](#irefilestore) - used internally by the HTML5 and Nexus client
 - [IRE.Sound](#iresound) - used internally by the HTML5 client
+- [IRE.Target](#iretarget) - used internally by the HTML5 client, used to control server side targeting and sync it with client side as well as deliver some additional info
 
 
 Supported messages by modules
@@ -582,3 +583,38 @@ IRE.Sound
 #### IRE.Sound.StopAll ####
 
 - no info yet
+
+
+IRE.Target
+----------
+
+### Sent by client ###
+
+#### IRE.Target.Set ####
+
+- Used to set the server side variable `&tar` and request target information about the target.
+- The body is a string containing the ID of the target.
+- Example: `IRE.Target.Set "12345"`
+
+### Sent by Server ###
+
+#### IRE.Target.Set ####
+
+- Used to notify the client of a change of the `&tar` variable
+- The body is a string containing the ID of the target or an empty string if unset.
+- Example: `IRE.Target.Set "12345"`
+
+#### IRE.Target.Info ####
+
+- Used to send additional information about the current active server side target (contents of the `&tar`-variable).
+- The body is an object the following fields:
+  - `short_desc`: Contains the short description of the target
+  - `hpperc`: Contains the current HP of the target as a percentage
+  - `id`: The ID of the target.
+- Example: `IRE.Target.Info {short_desc="a practice dummy",hpperc="100%",id="266744"}`
+
+#### IRE.Target.Request ####
+
+- Unconfirmed as not seen in real life yet
+- Used by the server to re-request the target
+- No body
