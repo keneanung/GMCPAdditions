@@ -156,10 +156,11 @@ Char.Skills
 
 - list of skills in a group available to the character
 - sent by server on request only
-- for IRE games, this is the list visible on AB <skillname>
-- message body is an object with keys "group" and "list", where group is the group name as a string
+- for IRE games, this is the list visible on AB <groupname>
+- message body is an object with keys "group", "desc" and "list", where group is the group name as a string
+- the desc value is the description of the skill as seen in AB <groupname>
 - the list value is an array of strings, each being the name of one skill
-- example: `{ "group": "Elemancy", "list": ["Light", "Stoneskin", "Firelash"] }`
+- example: `{ "group": "Elemancy", "desc": ["Cast light", "Make your skin hard as stone", "Cast a bold of fire"], "list": ["Light", "Stoneskin", "Firelash"] }`
 - **Note** This will return all skills in the group, even not learned ones. Only learned abilities will return a Info.info text though (otherwise it's empty as it is for invalid skills)
 
 #### Char.Skills.Info ####
