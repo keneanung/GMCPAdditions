@@ -8,7 +8,7 @@ Supported modules
 - [Char.Items](#charitems) - information about items in inventory and room, with live updates
 - [Comm.Channel](#commchannel) - identification of communication channels and player lists
 - [Room](#room) - various information about the current room
-- [Redirect](#redirect) - redirect outpot to another window
+- [Redirect](#redirect) - redirect output to another window
 - [IRE.Rift](#irerift) - IRE-specific, transmits information about the Rift contents
 - [IRE.Composer](#irecomposer) - IRE-specific, used to edit bigger texts client-side
 - [IRE.Tasks](#iretask) - used internally by the HTML5 client
