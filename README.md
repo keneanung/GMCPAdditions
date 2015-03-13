@@ -214,6 +214,7 @@ Char.Items
   - "m" = mobile
   - "d" = dead
   - "t" = takeable
+- icon: categorization of the item, name suggests icon type to use _(probably added for HTML5 client, not used yet)_
 - example: `Char.Items.List { "location": "room", "items": [ {"id": 54685, "name": "an apple"}, {"id": 85462, "name": "a tiny worm"}] }`
 
 #### Char.Items.Add ####
