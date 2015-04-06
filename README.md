@@ -6,6 +6,8 @@ Supported modules
 - [Char](#char) - information about a character
 - [Char.Skills](#charskills) - information about skills known by the player
 - [Char.Items](#charitems) - information about items in inventory and room, with live updates
+- [Char.Defences](#chardefences) - Sends information about defences of the character
+- [Char.Afflictions](#charafflictions) - Sends information about afflictions of the character
 - [Comm.Channel](#commchannel) - identification of communication channels and player lists
 - [Room](#room) - various information about the current room
 - [Redirect](#redirect) - redirect output to another window
@@ -234,6 +236,65 @@ Char.Items
 - informs the client about an item being removed from the location
 - message body is an object with the same structure as Add
 - example: `Char.Items.Remove { "location": "room", "item": {"id": 123988, "name": "a cat"} }`
+
+
+
+Char.Defences
+-------------
+
+### Sent by Server ###
+
+#### Char.Defences.List ####
+
+- Sends the list of current active defenses.
+- Sent, whenever the client requests the `def` list.
+- The body is a list of objects with the following keys
+    - `name`: shows the name of the defense
+    - `desc`: a short description of the defense
+- example: `Char.Defences.List [ { "name": "selfishness", "desc": "Selfishness prevents you from giving away items." }, { "name": "lifevision", "desc": "Lifevison allows you to see traces of all living beings, piercing through illusions and hiding defences." }, { "name": "tekurastance", "desc": "Tekura stances enhance or detract from certain aspects of your attacks." }, { "name": "deafness", "desc": "Deafness can prevent some harmful effects, at the expense of your hearing." }, { "name": "blindness", "desc": "Blindness can prevent some harmful effects, at the expense of your sight." } ]`
+
+#### Char.Defences.Add ####
+
+- Shows newly acquired defenses
+- The body has the same structure as the List message
+- example: `Char.Defences.Add [ { "name": "selfishness", "desc": "Selfishness prevents you from giving away items." } ]`
+
+#### Char.Defences.Remove ####
+
+- Shows lost defenses
+- The body is a list with the name of the lost defense in it
+- example: `Char.Afflictions.Remove [ "blindness" ]`
+
+
+
+Char.Afflictions
+-------------
+
+### Sent by Server ###
+
+#### Char.Afflictions.List ####
+
+- Sends the list of current afflictions.
+- Sent, whenever the client requests the `diag` list.
+- The body is a list of objects with the following keys
+    - `name`: shows the name of the affliction
+    - `cure`: shows the commands to cure this affliction
+    - `desc`: a short description of the affliction
+- example: `Char.Afflictions.List [ { "name": "insomnia", "cure": "EAT GOLDENSEAL", "desc": "Insomnia makes it very difficult to fall asleep." }, { "name": "deafness", "cure": "APPLY EPIDERMAL TO HEAD", "desc": "Deafness stops you from hearing anything." }, { "name": "blindness", "cure": "APPLY EPIDERMAL TO HEAD", "desc": "Blindness makes it impossible to see the world around you." } ]`
+
+#### Char.Afflictions.Add ####
+
+- Shows newly acquired afflictions
+- The body has the same structure as the List message
+- example: `Char.Afflictions.Add [ { "name": "insomnia", "cure": "EAT GOLDENSEAL", "desc": "Insomnia makes it very difficult to fall asleep." } ]`
+
+#### Char.Afflictions.Remove ####
+
+- Shows lost afflictions
+- The body is a list with the name of the lost affliction in it
+- example: `Char.Afflictions.Remove [ "blindness" ]`
+
+ 
 
 Comm.Channel
 ------------
