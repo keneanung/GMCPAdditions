@@ -109,7 +109,20 @@ Char
 - Additionally, each variable is included in a string, in the format name:cur/max
 - Interpretation of the variables is game specific
 - It is generally safe to assume that the values are numbers (even though encoded as strings)
-- Example: `Char.Vitals { "hp": "4500", "maxhp": "4800", "mp": "1200", "maxmp": "2500", "ep": "15000", "maxep": "16000", "wp": "14000", "maxwp": "15000", "nl": "10", "string": "H:4500/4800 M:1200/2500 E:15000/16000 W:14000/15000 NL:10/100" }`
+- Example: `Char.Vitals { "hp": "4500", "maxhp": "4800", "mp": "1200", "maxmp": "2500", "ep": "15000", "maxep": "16000", "wp": "14000", "maxwp": "15000", "nl": "10", "string": "H:4500/4800 M:1200/2500 E:15000/16000 W:14000/15000 NL:10/100", "charstats: [ "Bleed: 0", "Kai: 0%", "Stance: None" ] }`
+- Possible values (these are specific for the IRE game Achaea):
+  - `hp`: current health points
+  - `maxhp`: maximum health points
+  - `mp`: current mana points
+  - `maxmp`: maximum mana points
+  - `ep`: current endurance points
+  - `maxep`: maximum endurance points
+  - `wp`: current willpower points
+  - `maxwp`: maximum willpower points
+  - `nl`: current percentage on the way to the next level
+  - `string` all of the former in the for `current/max` as a single string
+  - `charstats`: An array of class specific values (+ bleeding) in a string per value. Format: `var: value`
+
 #### Char.StatusVars ####
 
 - sent by server after a successful login or after the module is enabled
