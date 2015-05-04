@@ -668,7 +668,7 @@ IRE.Target
 
 #### IRE.Target.Set ####
 
-- Used to set the server side variable `&tar` and request target information about the target.
+- Used to set the server side variable `&tar` and request target information.
 - The body is a string containing the ID of the target.
 - Example: `IRE.Target.Set "12345"`
 
@@ -676,7 +676,7 @@ IRE.Target
 
 #### IRE.Target.Set ####
 
-- Used to notify the client of a change of the `&tar` variable
+- Used to notify the client of a change of the `&tar` variable unless the client requested by sending `IRE.Target.Set`itself.
 - The body is a string containing the ID of the target or an empty string if unset.
 - Example: `IRE.Target.Set "12345"`
 
