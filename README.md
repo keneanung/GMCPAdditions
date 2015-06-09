@@ -614,7 +614,16 @@ IRE.Display
 - Gating event for displaying the wilderness (overhead) map.
 - Body is a string containing `start` immediately before the output starts or `stop` immidiately after the last line of the map
 - Example: `IRE.Display.Ohmap "start"`
+ 
+#### IRE.Display.ButtonActions ####
 
+- Used by the HTML5 client to change the default buttons.
+- The body is an object with a descriptive object for each Button. Property names are Button1, Button2 ...
+- each descriptive object contains:
+  - `text`: the text to be shown
+  - `commands`: the commands to be sent to the game
+  - `highlight`: 0 for no highlight, 1 for highlight
+- Example: `{"button1":{"text":"Combo","commands":"COMBO @tar","highlight":0},"button2":{"text":"Spinningbackfist","commands":"sbp @tar","highlight":1},"button3":{"text":"Scramble","commands":"mind scramble @tar","highlight":0},"button4":{"text":"Splinterkick","commands":"spk @tar","highlight":1},"button5":{"text":"Tornadokick","commands":"tnk @tar","highlight":1},"button6":{"text":"Mindblast","commands":"mind blast @tar","highlight":0},"button7":{"text":"Ripplestrike","commands":"rpst @tar","highlight":0}}`
 
 
 IRE.FileStore
