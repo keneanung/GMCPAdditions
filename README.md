@@ -617,6 +617,7 @@ IRE.Display
  
 #### IRE.Display.ButtonActions ####
 
+- Available from module version 3 (IRE.Display 3)
 - Used by the HTML5 client to change the default buttons.
 - The body is an object with a descriptive object for each Button. Property names are Button1, Button2 ...
 - each descriptive object contains:
