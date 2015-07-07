@@ -230,7 +230,8 @@ Char.Items
   - "m" = mobile
   - "d" = dead
   - "t" = takeable
-- icon: categorization of the item, name suggests icon type to use _(probably added for HTML5 client, not used yet)_
+  - "x" = loyal to a city/an adventurer
+- icon: categorization of the item, for example which icon type to use
 - example: `Char.Items.List { "location": "room", "items": [ {"id": 54685, "name": "an apple"}, {"id": 85462, "name": "a tiny worm"}] }`
 
 #### Char.Items.Add ####
@@ -626,7 +627,15 @@ IRE.Display
   - `commands`: the commands to be sent to the game
   - `highlight`: 0 for no highlight, 1 for highlight
 - Example: `{"button1":{"text":"Combo","commands":"COMBO @tar","highlight":0},"button2":{"text":"Spinningbackfist","commands":"sbp @tar","highlight":1},"button3":{"text":"Scramble","commands":"mind scramble @tar","highlight":0},"button4":{"text":"Splinterkick","commands":"spk @tar","highlight":1},"button5":{"text":"Tornadokick","commands":"tnk @tar","highlight":1},"button6":{"text":"Mindblast","commands":"mind blast @tar","highlight":0},"button7":{"text":"Ripplestrike","commands":"rpst @tar","highlight":0}}`
+ 
+#### IRE.Display.Window ####
 
+- Gating event to move output to a different window
+- used by the Achaean "window" command to move the command output to a different window
+- Body is an object containing:
+  - `start`: 1 to start redirecting, 0 to stop redirecting
+  - `cmd`: the command the output belongs to
+- Example: `{"start":"1", "cmd":"sit"}`
 
 IRE.FileStore
 -------------
