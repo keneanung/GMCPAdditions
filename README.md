@@ -1,5 +1,7 @@
 Module and message names are not case sensitive. JSON key names are case sensitive.
 
+Source: http://nexus.ironrealms.com/GMCP and http://play.achaea.com sourcecode
+
 Supported modules
 =================
 - [Core](#core) - core functionality
@@ -165,14 +167,14 @@ Char.Skills
 - sent by server on request or at any time (usually if the list changes)
 - for IRE games, groups are skills like Survival or Elemancy
 - message body is an array of objects, each being one name and the skill rank
-- example: `Char.Skills.Groups [ { "name":"Survival", "rank": "Transcendent" }, { "name": "Perception", "rank": "Trascendant" }, { "name": "Elemancy", "rank": "Transcendant"}, { "name": "Crystalism", "rank": "Expert"} ]`
+- example: `Char.Skills.Groups [ { "name": "Perception", "rank": "Transcendent (100%)" }, { "name": "Survival", "rank": "Inept (0%)" }, { "name": "Weaponry", "rank": "Inept (0%)" }, { "name": "Tattoos", "rank": "Inept (0%)" }, { "name": "Evasion", "rank": "Inept (0%)" }, { "name": "Engineering", "rank": "Inept (0%)" }, { "name": "Taming", "rank": "Inept (0%)" }, { "name": "Concoctions", "rank": "Inept (0%)" }, { "name": "Toxins", "rank": "Inept (0%)" }, { "name": "Smithing", "rank": "Inept (0%)" }, { "name": "Malignosis", "rank": "Adept (1%)" }, { "name": "Necromancy", "rank": "Inept (0%)" }, { "name": "Evileye", "rank": "Adept (40%)" } ]`
 
 #### Char.Skills.List ####
 
 - list of skills in a group available to the character
 - sent by server on request only
-- for IRE games, this is the list visible on AB <groupname>
-- message body is an object with keys "group", "desc" and "list", where group is the group name as a string
+- for IRE games, this is the list visible on `AB <groupname>`
+- message body is an object with keys `group`, `desc` and `list`, where group is the group name as a string
 - the desc value is the description of the skill as seen in AB <groupname>
 - the list value is an array of strings, each being the name of one skill
 - example: `{ "group": "Elemancy", "desc": ["Cast light", "Make your skin hard as stone", "Cast a bold of fire"], "list": ["Light", "Stoneskin", "Firelash"] }`
@@ -207,16 +209,23 @@ Char.Items
 - causes the server to send back an appropriate Char.Items.List message
 - Example: `Char.Items.Contents 402879`
 
+#### Char.Items.Room ####
+
+- request for the server to send the list of items in the current room
+- message body is empty
+- causes the server to send back an appropriate Char.Items.List message
+- Example: `Char.Items.Room`
+
 ### Sent by server ###
 
 #### Char.Items.List ####
 
 - list of items at a specified location (room, inv, held container)
-- message body is an object with keys "location" and "items"
-- location value is a string, "inv", "room", or "repNUMBER" - the last one is container identification
-- items value is an array, whose each item is an object with keys "id", "name" and optionally "attrib"
-- id is a number identifying the item, name is a string containing a short player-visible item descrption
-- attrib is a string consisting of characters describing item properties:
+- message body is an object with keys `location` and `items`
+- `location` value is a string, `inv`, `room`, or `repNUMBER` - the last one is container identification
+- `items` value is an array, whose each item is an object with keys `id`, `name`, `icon` and optionally `attrib`
+- `id` is a number identifying the item, `name` is a string containing a short player-visible item descrption
+- `attrib` is a string consisting of characters describing item properties:
   - "w" = worn, 
   - "W" = wearable but not worn, 
   - "l" = wielded (left),
@@ -227,10 +236,10 @@ Char.Items
   - "r" = riftable
   - "f" = fluid
   - "e" = edible
-  - "m" = mobile
-  - "d" = dead
+  - "m" = monster
+  - "d" = dead monster
   - "t" = takeable
-  - "x" = loyal to a city/an adventurer
+  - "x" = should not be targeted (loyal to city, player....)
 - icon: categorization of the item, for example which icon type to use
 - example: `Char.Items.List { "location": "room", "items": [ {"id": 54685, "name": "an apple"}, {"id": 85462, "name": "a tiny worm"}] }`
 
@@ -323,7 +332,9 @@ Comm.Channel
 
 #### Comm.Channel.Enable ####
 
-- no info yet (found in http://client.achaea.com/includes/js/ui/channels.js)
+- Used to tell the game to turn on a character channel without typing in a command line command.
+- Example: `Comm.Channel.Enable "newbie"`
+- Example: `Comm.Channel.Enable "clt Consortium"`
   
 ### Sent by server ###
 
@@ -483,7 +494,7 @@ IRE.Tasks
 
 #### IRE.Tasks.List ####
 
-- Sent by the server to transmit a list of tasks the character has
+- This is used to send a list of quest, tasks, and achievements, depending on what the game supports.
 - The body is an array of objects with the following fields:
   - "id": Unique ID of the task
   - "name": Name of the task
@@ -499,6 +510,10 @@ IRE.Tasks
 - Sent by the server to show that a task was changed.
 - The body structure is the same as the one of IRE.Tasks.List
 
+#### IRE.Tasks.Completed ####
+
+- no info yet
+ 
 
 
 IRE.Time
@@ -553,6 +568,19 @@ IRE.Misc
 - the body is an object with the name and value of the achievement
 - example: `IRE.Misc.Achievement { "name": "AchievedLevel21", "value": "1" }`
 
+#### IRE.Misc.URL ####
+
+- Sends a url to the client to open in a window when clicked.
+- Message body is a list with an object. The object's keys are `url` and `window`.
+- `url` is the URL to open when clicked.
+- `window` is the window where the content should be shown
+- Example: `IRE.Misc.URL [{"url": "http://www.imperian.com/tos", "window": "ire_game_tos" }]`
+
+#### IRE.MISC.Tip ####
+
+- Sends a line of text to the client.
+- Example: `IRE.Misc.Tip "This is a tip!"`
+
 #### IRE.Misc.OneTimePassword ####
 
 - no info yet
@@ -566,6 +594,12 @@ IRE.Misc
 #### IRE.Misc.OneTimePassword ####
 
 - no info yet (found in http://client.achaea.com/includes/js/ui/dialogs.js)
+
+#### IRE.Misc.Voted ####
+
+- Informs the game a vote button was clicked.
+- No body
+- Example: IRE.Misc.Voted ""
 
 
 IRE.Display
