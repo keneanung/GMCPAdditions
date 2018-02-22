@@ -280,8 +280,8 @@ Char.Defences
 #### Char.Defences.Add ####
 
 - Shows newly acquired defenses
-- The body has the same structure as the List message
-- example: `Char.Defences.Add [ { "name": "selfishness", "desc": "Selfishness prevents you from giving away items." } ]`
+- The body is a single defense object as in the `Char.Defences.List`.
+- example: `Char.Defences.Add { "name": "selfishness", "desc": "Selfishness prevents you from giving away items." }`
 
 #### Char.Defences.Remove ####
 
