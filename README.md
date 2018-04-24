@@ -15,7 +15,7 @@ Supported modules
 - [Redirect](#redirect) - redirect output to another window
 - [IRE.Rift](#irerift) - IRE-specific, transmits information about the Rift contents
 - [IRE.Composer](#irecomposer) - IRE-specific, used to edit bigger texts client-side
-- [IRE.Tasks](#iretask) - used internally by the HTML5 client
+- [IRE.Tasks](#iretasks) - used internally by the HTML5 client
 - [IRE.Time](#iretime) - used internally by the HTML5 client
 - [IRE.Wiz](#irewiz) - used internally by the Nexus client
 - [IRE.Misc](#iremisc) - used internally by the HTML5, fMUD and Nexus clients
