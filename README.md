@@ -23,6 +23,7 @@ Supported modules
 - [IRE.FileStore](#irefilestore) - used internally by the HTML5 and Nexus client
 - [IRE.Sound](#iresound) - used internally by the HTML5 client
 - [IRE.Target](#iretarget) - used internally by the HTML5 client, used to control server side targeting and sync it with client side as well as deliver some additional info
+- [Client](#client) - used to transmit game enhancing client side modules
 
 
 Supported messages by modules
@@ -748,3 +749,17 @@ IRE.Target
 - Unconfirmed as not seen in real life yet
 - Used by the server to re-request the target
 - No body
+
+Client
+----------
+
+It is usually not necessary to enable this module as it is enabled by default. Servers may send different client specific content in these messages to provide a customized experience specific to the client.
+
+### Sent by server ###
+
+#### Client.Map ####
+
+- Used to send the location of a server provided map to the client.
+- The body is an object with the following fields:
+  - `url`: Contains the URL where to find and download a server provided map. This might be a map in the MMP or a client specific format.
+- Example: `Client.Map { "url": "http://www.achaea.com/maps/map.xml" }`
