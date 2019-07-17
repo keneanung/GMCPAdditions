@@ -770,7 +770,7 @@ External.Discord
 
 Additional information about this module can be found at https://wiki.mudlet.org/w/Standards:Discord_GMCP
 
-### sent by server ###
+### Sent by server ###
 
 #### External.Discord.Info ####
 
@@ -797,7 +797,7 @@ Additional information about this module can be found at https://wiki.mudlet.org
   - `endtime`: Time when the current session will end as a unix timestamp (seconds since epoch). Discord will convert this to a countdown
 - Example: `{ smallimage: ["iconname", "iconname2", iconname3"], smallimagetext: "Icon hover text", details: "Details String", state: "State String", partysize: 0, partymax: 10, game: "Achaea", starttime: "1563354350", endtime: "1563355350" }`
 
-### sent by client ###
+### Sent by client ###
 
 #### External.Discord.Hello ####
 
