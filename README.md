@@ -24,6 +24,7 @@ Supported modules
 - [IRE.Sound](#iresound) - used internally by the HTML5 client
 - [IRE.Target](#iretarget) - used internally by the HTML5 client, used to control server side targeting and sync it with client side as well as deliver some additional info
 - [Client](#client) - used to transmit game enhancing client side modules
+- [External.Discord](#externaldiscord) - used to set Discord rich presence information
 
 
 Supported messages by modules
@@ -738,7 +739,7 @@ IRE.Target
 #### IRE.Target.Info ####
 
 - Used to send additional information about the current active server side target (contents of the `&tar`-variable).
-- The body is an object the following fields:
+- The body is an object with the following fields:
   - `short_desc`: Contains the short description of the target
   - `hpperc`: Contains the current HP of the target as a percentage
   - `id`: The ID of the target.
@@ -751,7 +752,7 @@ IRE.Target
 - No body
 
 Client
-----------
+------
 
 It is usually not necessary to enable this module as it is enabled by default. Servers may send different client specific content in these messages to provide a customized experience specific to the client.
 
@@ -763,3 +764,52 @@ It is usually not necessary to enable this module as it is enabled by default. S
 - The body is an object with the following fields:
   - `url`: Contains the URL where to find and download a server provided map. This might be a map in the MMP or a client specific format.
 - Example: `Client.Map { "url": "http://www.achaea.com/maps/map.xml" }`
+
+External.Discord
+----------------
+
+Additional information about this module can be found at https://wiki.mudlet.org/w/Standards:Discord_GMCP
+
+### sent by server ###
+
+#### External.Discord.Info ####
+
+- Sent in response to a `External.Discord.Hello` message
+- The body is an object that is either empty or has the following fields:
+  - `inviteurl`: the URL that can be used to join a game specific Discord server.
+  - `applicationid`: the application ID to be used by the client when connecting to the Discord Rich Presence service. That way the game will show up on its own and can use custom assets.
+- Example: `{ inviteurl: "https://discord.gg/kuYvMQ9", applicationid: "165132135465411234567890" }`
+
+#### External.Discord.Status ####
+
+- Sent in response to a `External.Discord.Get` message or whenever the status changes
+- The body is an object with the following optional fields:
+  - `smallimage`: Array of Discord image resource names that should be used as the small Discord image. Ordered by order of preference. Pick one.
+  - `smallimagetext`: Text that should appear on mouseover on the small image
+  - `largeimage`: Array of Discord image resource names that should be used as the large Discord image. Ordered by order of preference. Pick one.
+  - `largeimagetext`: Text that should appear on mouseover on the large image
+  - `details`: Second line in the Discord rich presence popup
+  - `state`: Third line in the Discord rich presence popup
+  - `partysize`: Number of people in the player party
+  - `partymax`: Maximum number of people in the player party
+  - `game`: Game that is played
+  - `starttime`: Time when the current session was started as a unix timestamp (seconds since epoch). Discord will convert this to a counter
+  - `endtime`: Time when the current session will end as a unix timestamp (seconds since epoch). Discord will convert this to a countdown
+- Example: `{ smallimage: ["iconname", "iconname2", iconname3"], smallimagetext: "Icon hover text", details: "Details String", state: "State String", partysize: 0, partymax: 10, game: "Achaea", starttime: "1563354350", endtime: "1563355350" }`
+
+### sent by client ###
+
+#### External.Discord.Hello ####
+
+- Sent to announce the player Discord information to the server. The server might use it for bot integration or publishing contact information or other usage.
+- The body is an object with the following fields:
+  - `user`: Discord unique user name
+  - `private`: Boolean to opt out of publishing this data. This should not disable bot usage. Servers MUST comply with this request.
+- Example: `{ user: "person#1234", private: true }`
+
+#### External.Discord.Get ####
+
+- Sent to manually retrieve `External.Discord.Status` from the server
+- The body is empty
+- Example: `External.Discord.Get`
+  
