@@ -1112,7 +1112,7 @@ The examples in this document show a formatted example message body. For the ful
 "start"
 ```
 
-#### IRE.Display.ButtonActions #####
+##### IRE.Display.ButtonActions #####
 
 - Available from module version 3 (IRE.Display 3)
 - Used by the HTML5 client to change the default buttons.
