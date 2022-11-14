@@ -167,6 +167,8 @@ The examples in this document show a formatted example message body. For the ful
   - `maxwp`: maximum willpower points
   - `nl`: current percentage on the way to the next level
   - `string` all of the former in the form `current/max` as a single string
+  - `bal`: whether you have balance, represented as `"1"` for having it and `"0"` for not
+  - `eq`: whether you have equilibrium, represented as `"1"` for having it and `"0"` for not
   - `charstats`: An array of class specific values (+ bleeding) in a string per value. Format: `var: value`
 - Example:
 
@@ -182,6 +184,8 @@ The examples in this document show a formatted example message body. For the ful
   "maxwp": "15000",
   "nl": "10",
   "string": "H:4500/4800 M:1200/2500 E:15000/16000 W:14000/15000 NL:10/100",
+  "bal": "1",
+  "eq": "0",
   "charstats": [
     "Bleed: 0",
     "Kai: 0%",
